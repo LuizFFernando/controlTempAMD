@@ -2,6 +2,7 @@ import glob
 import time
 cont = 0
 cont1 = 0
+graus = 0
 #funçao para ver o valor em  porcentagem  das temperatura
 def porcentagem(number):
     output = number / 255
@@ -10,7 +11,7 @@ def porcentagem(number):
     return output
 #funçao manda valor ja formulado para arq drm e seta intencidade dos cules
 def manda_temp(number):
-    output = number / 340
+    output = number / 310 #340 
     output = int(output)
     return output
 
@@ -34,13 +35,15 @@ while True:
             for y in d:
                 #print (y)
                 y = int(y)
+                graus = str(y)
+                graus = graus[0:2]
                 #print (type(y))   
                 temp = manda_temp(y) #funcao funçao manda valor ja formulado para arq drm e seta intencidade dos cules
                 porcent = porcentagem(temp) #funçao para ver o valor em  porcentagem  das temperatura
                 porcent = int(porcent)
                 temp = str(temp)
                
-                print('mandando dados - ', array[cont], 'FAN',  porcent,'%')
+                print('mandando dados - ', array[cont], graus,'C', ' ', 'FAN',  porcent,'%')
                 cont = cont + 1
                 if cont == cont1:
                     cont = 0
